@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Container from '../common/Container'
 import PromotionItem from '../common/PromotionItem'
+import promotionImg from '../assets/loudspeaker.png'
 
 const WrapItem = styled.div`
   width: 100%;
@@ -25,8 +26,12 @@ const Detail = styled.div`
 const Promotion = () => {
   return (
     <Container>
-      <div>
-        <img />
+      <div style={{ textAlign: 'center' }}>
+        <img
+          src={promotionImg}
+          alt="promotion"
+          style={{ width: '60%', margin: '50px' }}
+        />
       </div>
       <PromotionItem text="ฟรี 3 เที่ยว! ลงทะเบียนภายในสัปดาห์นี้" />
       <PromotionItem text="พิเศษ! ลด 30% เหมา 30 เที่ยวเดือนนี้สำหรับนักเรียนนักศึกษา" />
