@@ -88,6 +88,13 @@ const Login = () => {
             onChange={handleChange('name')}
             margin="normal"
         />
+        <TextCustom
+            id="standard-name"
+            label="6 Digit Password"
+            value={values.name}
+            onChange={handleChange('pa')}
+            margin="normal"
+        />  
         <ButtonCustom >
           <Button variant="contained">
             Login
