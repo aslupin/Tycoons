@@ -4,6 +4,7 @@ import IcBus from '../assets/ic_bus_stop.svg'
 import IcWallet from '../assets/ic_wallet.svg'
 import IcHome from '../assets/ic_home.svg'
 import IcPromotion from '../assets/ic_promotion.svg'
+import { Link } from 'react-router-dom'
 const ContainerNavbar = styled.div`
   position: fixed;
   width: 100vw;
@@ -37,25 +38,35 @@ const Text = styled.div`
   font-size: 10px;
 `
 
+const linkStyle = { textDecoration: 'none', color: 'inherit' }
+
 const Navbar = () => {
   return (
     <ContainerNavbar>
-      <ItemNavbar>
-        <Icon src={IcBus} />
-        <Text>Busstop</Text>
-      </ItemNavbar>
-      <ItemNavbar>
-        <Icon src={IcWallet} />
-        <Text>Transaction</Text>
-      </ItemNavbar>
-      <ItemNavbar>
-        <Icon src={IcPromotion} />
-        <Text> Promotion</Text>
-      </ItemNavbar>
-      <ItemNavbar>
-        <Icon src={IcHome} />
-        <Text>Home</Text>
-      </ItemNavbar>
+      <Link to="/map" style={linkStyle}>
+        <ItemNavbar>
+          <Icon src={IcBus} />
+          <Text>Map</Text>
+        </ItemNavbar>
+      </Link>
+      <Link to="/transaction" style={linkStyle}>
+        <ItemNavbar>
+          <Icon src={IcWallet} />
+          <Text>Transaction</Text>
+        </ItemNavbar>
+      </Link>
+      <Link to="/promotion" style={linkStyle}>
+        <ItemNavbar>
+          <Icon src={IcPromotion} />
+          <Text> Promotion</Text>
+        </ItemNavbar>
+      </Link>
+      <Link to="/" style={linkStyle}>
+        <ItemNavbar>
+          <Icon src={IcHome} />
+          <Text>Home</Text>
+        </ItemNavbar>
+      </Link>
     </ContainerNavbar>
   )
 }
