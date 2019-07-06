@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import IcBus from '../assets/ic_bus_stop.svg'
 import IcWallet from '../assets/ic_wallet.svg'
 import IcHome from '../assets/ic_home.svg'
-
+import IcPromotion from '../assets/ic_promotion.svg'
 const ContainerNavbar = styled.div`
   position: fixed;
   width: 100vw;
@@ -42,11 +42,15 @@ const Navbar = () => {
     <ContainerNavbar>
       <ItemNavbar>
         <Icon src={IcBus} />
-        <Text>Bustop</Text>
+        <Text>Busstop</Text>
       </ItemNavbar>
       <ItemNavbar>
         <Icon src={IcWallet} />
         <Text>Transaction</Text>
+      </ItemNavbar>
+      <ItemNavbar>
+        <Icon src={IcPromotion} />
+        <Text> Promotion</Text>
       </ItemNavbar>
       <ItemNavbar>
         <Icon src={IcHome} />

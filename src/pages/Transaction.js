@@ -40,36 +40,37 @@ const THB = styled.p`
 `
 
 const BtnCircle = styled.div`
-  width: 48px;
+  /* width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid rgb(216, 216, 216, 0.21);
+  border: 1px solid rgb(216, 216, 216, 0.21); */
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  bottom: 60px;
-  right: 30px;
+  bottom: 10px;
+  right: 10px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 40px;
   color: #dd8b48;
 `
 const HrCustom = styled.hr`
   border-color: #d8d8d8;
+  opacity: 0.3;
   width: 60%;
 `
 
 const Menu = styled.p`
   font-size: 18px;
-  /* margin: auto 0.5rem; */
   color: #727171;
+  margin-left: 3rem;
 `
 
 const MenuTabsWrap = styled.div`
   display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  margin-bottom: 2rem;
+  justify-content: flex-start;
+  width: 90%;
+  margin-bottom: 0.5rem;
 `
 
 const ContainerItem = styled.div`
@@ -77,6 +78,7 @@ const ContainerItem = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 90%;
 `
 const Transaction = () => {
   return (
@@ -94,9 +96,8 @@ const Transaction = () => {
       </CardBalance>
 
       <MenuTabsWrap>
-        <Menu> Transaction</Menu>
-        <Menu> History</Menu>
-        <Menu> Promotion</Menu>
+        <Menu> ราคา</Menu>
+        <Menu> สถานที่ / เวลา</Menu>
       </MenuTabsWrap>
       <ContainerItem>
         <ItemTransaction />
