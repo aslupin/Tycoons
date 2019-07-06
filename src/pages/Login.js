@@ -77,6 +77,10 @@ const Login = () => {
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value })
   }
+
+  const handleLogin = () => {
+    localStorage.setItem('username', values.name)
+  }
   return (
     <WrapForm>
       <Wrap>
@@ -92,12 +96,12 @@ const Login = () => {
       <TextCustom
         id="standard-name"
         label="6 Digit Password"
-        value={values.name}
+        value={values.pa}
         onChange={handleChange('pa')}
         margin="normal"
       />
       <ButtonCustom>
-        <Button variant="contained">Login</Button>
+        <Button variant="contained" onClick={handleLogin} >Login</Button>
       </ButtonCustom>
       <SponsorParent>
         <SponsorContain>
