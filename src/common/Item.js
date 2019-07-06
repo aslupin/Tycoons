@@ -10,8 +10,8 @@ const WrapItem = styled.div`
 `
 const Detail = styled.div`
   border-radius: 10px;
-  width: 300px;
-  height: 54px;
+  width: 90%;
+  height: 60px;
   background-color: rgb(217, 168, 123, 0.16);
   margin-right: 1em;
   display: flex;
@@ -20,7 +20,7 @@ const Detail = styled.div`
 `
 const BtnPay = styled.div`
   width: 65px;
-  height: 54px;
+  height: 60px;
   background: transparent;
   border: 1px solid #c89568;
   border-radius: 10px;
@@ -45,18 +45,21 @@ const Cost = styled.p`
 const HorDetail = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  margin-left: 2rem;
 `
 
 const Location = styled.p`
   color: #585858;
-  font-size: 8px;
+  font-size: 10px;
+  margin: 0;
 `
 const TimerStamp = styled.p`
   color: #585858;
-  font-size: 8px;
+  font-size: 10px;
   opacity: 0.71;
+  margin: 0;
 `
 const Item = () => {
   return (
@@ -70,8 +73,6 @@ const Item = () => {
           <TimerStamp>เวลาลง: {`10/2/3 12:18`} น.</TimerStamp>
         </HorDetail>
       </Detail>
-
-      <BtnPay>Pay</BtnPay>
     </WrapItem>
   )
 }
