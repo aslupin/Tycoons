@@ -1,9 +1,7 @@
 import axios from "axios";
-import firebase from "firebase";
-import firebaseConfig from "./firebaseConfig";
+import fdb from "./fdb";
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+const db = fdb.getDb();
 
 const transaction = {
   getAll: username => {
