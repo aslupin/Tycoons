@@ -103,11 +103,6 @@ const Transaction = () => {
         </InlineWrap>
         <HrCustom />
       </CardBalance>
-
-      <MenuTabsWrap>
-        <Menu> ราคา</Menu>
-        <Menu> สถานที่ / เวลา</Menu>
-      </MenuTabsWrap>
       <ContainerItem>
         {transactions.map(transaction => (
           <ItemTransaction
