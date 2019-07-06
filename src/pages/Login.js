@@ -47,7 +47,7 @@ const SponsorParent = styled.div`
   align-item: center;
   justify-content: space-evenly;
   width: 100%;
-  margin-top: 70px;
+  margin-top: 100px;
 `
 
 const SponsorContain = styled.div`
