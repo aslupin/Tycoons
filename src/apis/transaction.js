@@ -34,7 +34,7 @@ const transaction = {
           destination: dest.location,
           startTimestamp: src.timestamp,
           endTimestamp: dest.timestamp,
-          cost: Math.round(Math.random() * 101),
+          cost: dest.cost,
         })
       }
       resolve(result)
