@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import IcB from '../assets/ic_b.png'
+import moment from 'moment-timezone'
+
 const WrapItem = styled.div`
   width: 100%;
   height: 60px;
@@ -61,16 +63,24 @@ const TimerStamp = styled.p`
   opacity: 0.71;
   margin: 0;
 `
-const Item = () => {
+const Item = props => {
   return (
     <WrapItem>
       <Detail>
         <IconB src={IcB} />
         <Cost>35.00</Cost>
         <HorDetail>
-          <Location>สภานที่: {`ม.เกษตร`}</Location>
-          <TimerStamp>เวลาขึ้น: {`10/2/3 12:00`} น.</TimerStamp>
-          <TimerStamp>เวลาลง: {`10/2/3 12:18`} น.</TimerStamp>
+          <Location>
+            สภานที่: {`${props.source} - ${props.destination}`}
+          </Location>
+          <TimerStamp>
+            เวลาขึ้น:{' '}
+            {moment(props.startTimestamp * 1000).format('DD/MM/YY hh:mm')} น.
+          </TimerStamp>
+          <TimerStamp>
+            เวลาลง:{' '}
+            {moment(props.startTimestamp * 1000).format('DD/MM/YY hh:mm')} น.
+          </TimerStamp>
         </HorDetail>
       </Detail>
     </WrapItem>
