@@ -20,6 +20,26 @@ const transaction = {
         resolve(result);
       });
     });
+  },
+  getHitory: function(username) {
+    return new Promise(async resolve => {
+      const transactions = await this.getAll(username);
+      transactions.sort((a, b) => a.timestamp > b.timestamp);
+      let result = [];
+      for (let i = 0; i < transactions.length - 1; i += 2) {
+        const src = transactions[i];
+        const dest = transactions[i + 1];
+        result.push({
+          user: src.user,
+          source: src.location,
+          destination: dest.location,
+          startTimestamp: src.timestamp,
+          endTimestamp: dest.timestamp,
+          cost: Math.round(Math.random() * 101)
+        });
+      }
+      resolve(result);
+    });
   }
 };
 
