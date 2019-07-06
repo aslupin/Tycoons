@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Container from '../common/Container'
 import styled from 'styled-components'
 import ItemTransaction from '../common/Item'
+import transactionApi from '../apis/transaction'
 const CardBalance = styled.div`
   width: 90%;
   height: 220px;
@@ -81,6 +82,14 @@ const ContainerItem = styled.div`
   width: 90%;
 `
 const Transaction = () => {
+  const [transactions, setTransactions] = useState([])
+
+  useEffect(() => {
+    transactionApi.getHitory('New').then(transactions => {
+      setTransactions(transactions)
+    })
+  })
+
   return (
     <Container>
       <CardBalance>
@@ -100,21 +109,12 @@ const Transaction = () => {
         <Menu> สถานที่ / เวลา</Menu>
       </MenuTabsWrap>
       <ContainerItem>
-        <ItemTransaction />
-        <ItemTransaction />
-        <ItemTransaction />
-        <ItemTransaction />
-        <ItemTransaction />
-        <ItemTransaction />
-        <ItemTransaction />
-        <ItemTransaction />
-        <ItemTransaction />
-        <ItemTransaction />
-        <ItemTransaction />
-        <ItemTransaction />
-        <ItemTransaction />
-        <ItemTransaction />
-        <ItemTransaction />
+        {transactions.map(transaction => (
+          <ItemTransaction
+            key={`transaction-${transaction.tid}`}
+            {...transaction}
+          />
+        ))}
       </ContainerItem>
     </Container>
   )
