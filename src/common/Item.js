@@ -68,7 +68,7 @@ const Item = props => {
     <WrapItem>
       <Detail>
         <IconB src={IcB} />
-        <Cost>35.00</Cost>
+        <Cost>{props.cost}</Cost>
         <HorDetail>
           <Location>
             สภานที่: {`${props.source} - ${props.destination}`}

@@ -88,7 +88,7 @@ const Transaction = () => {
     transactionApi.getHitory('New').then(transactions => {
       setTransactions(transactions)
     })
-  })
+  }, [])
 
   return (
     <Container>
