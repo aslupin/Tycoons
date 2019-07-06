@@ -10,6 +10,7 @@ import SEDA from "../assets/seda.png";
 import SUT from "../assets/sut.png";
 import ST from "../assets/startup_thailand.png";
 import SA from "../assets/startup-academy-logo.png";
+import payment from "../apis/payment";
 
 const Img = styled.img`
   width: 300px;
@@ -67,6 +68,7 @@ const Sponsor2 = styled.img`
 `;
 
 const Login = () => {
+  payment.pay("-Lj6495yYBNnu5_3ZA8q");
   const [values, setValues] = React.useState({
     name: "",
     pa: ""
