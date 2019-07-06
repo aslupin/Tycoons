@@ -9,11 +9,13 @@ import { Switch, Route } from 'react-router-dom'
 import App from './App'
 import Transaction from './pages/Transaction'
 import Login from './pages/Login'
+import Promotion from './pages/Promotion'
 
 export default () => (
   <Switch>
     <Route path="/" exact component={App} />
     <Route path="/transaction" exact component={Transaction} />
     <Route path="/login" exact component={Login} />
+    <Route path="/promotion" exact component={Promotion} />
   </Switch>
 )

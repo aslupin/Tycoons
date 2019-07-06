@@ -1,8 +1,37 @@
 import React from 'react'
 import styled from 'styled-components'
-import Container from ''
+import Container from '../common/Container'
+import PromotionItem from '../common/PromotionItem'
+
+const WrapItem = styled.div`
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+`
+
+const Detail = styled.div`
+  border-radius: 10px;
+  width: 90%;
+  height: 60px;
+  background-color: rgb(217, 168, 123, 0.16);
+  margin-right: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`
+
 const Promotion = () => {
-  return <div />
+  return (
+    <Container>
+      <div>
+        <img />
+      </div>
+      <PromotionItem text="ฟรี 3 เที่ยว! ลงทะเบียนภายในสัปดาห์นี้" />
+      <PromotionItem text="พิเศษ! ลด 30% เหมา 30 เที่ยวเดือนนี้สำหรับนักเรียนนักศึกษา" />
+    </Container>
+  )
 }
 
 export default Promotion
