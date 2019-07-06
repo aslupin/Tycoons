@@ -12,7 +12,7 @@ const payment = {
         const transactionObj = snapshot.val();
         const transactions = [];
         for (let tid in transactionObj) {
-          transactions.push(transactionObj[tid]);
+          transactions.push({ tid: tid, ...transactionObj[tid] });
         }
         transactions.sort((a, b) => a.timestamp > b.timestamp);
         const result = [];
@@ -23,6 +23,7 @@ const payment = {
             continue;
           }
           result.push({
+            tid: dest.tid,
             user: src.user,
             source: src.location,
             destination: dest.location,
