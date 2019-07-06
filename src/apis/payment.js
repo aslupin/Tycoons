@@ -1,6 +1,3 @@
-import axios from "axios";
-import firebase from "firebase";
-import firebaseConfig from "./firebaseConfig";
 import fdb from "./fdb";
 
 const db = fdb.getDb();
@@ -38,6 +35,9 @@ const payment = {
         resolve(result);
       });
     });
+  },
+  pay: function(tid) {
+    db.ref(`/transactions/${tid}`).update({ paid: true });
   }
 };
 
