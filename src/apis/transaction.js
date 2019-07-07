@@ -37,6 +37,7 @@ const transaction = {
           cost: dest.cost,
         })
       }
+      result.reverse()
       resolve(result)
     })
   },
