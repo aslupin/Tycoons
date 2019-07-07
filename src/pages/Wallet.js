@@ -3,6 +3,8 @@ import Container from '../common/Container'
 import styled from 'styled-components'
 import ItemTransaction from '../common/Item'
 import transactionApi from '../apis/transaction'
+import userApi from '../apis/user'
+import user from '../apis/user';
 const CardBalance = styled.div`
   width: 90%;
   height: 220px;
@@ -81,12 +83,17 @@ const ContainerItem = styled.div`
   align-items: center;
   width: 90%;
 `
-const MonthlyFee = () => {
+const Wallet = () => {
   const [transactions, setTransactions] = useState([])
+  const [balance, setBalance] = useState(0)
 
   useEffect(() => {
-    transactionApi.getHitory('New').then(transactions => {
+    const username = localStorage.getItem('username')
+    transactionApi.getHitory(username).then(transactions => {
       setTransactions(transactions)
+    })
+    userApi.getBalance(username).then(balance => {
+      setBalance(balance)
     })
   }, [])
 
@@ -94,51 +101,25 @@ const MonthlyFee = () => {
     <div>
       <CardBalance>
         <WrapTopic>
-          <WalletBalance>Monthly Fee</WalletBalance>
+          <WalletBalance>Wallet balance</WalletBalance>
         </WrapTopic>
-        <div style={{ width: '100%' }}>
-          <table
-            style={{ width: '100%', marginLeft: '10px', marginRight: '10px' }}
-          >
-            <tbody>
-              <tr>
-                <td>รอบบิล</td>
-                <td>กรกฎาคม 2562</td>
-              </tr>
-              <tr>
-                <td>ค่าบริการ</td>
-                <td>100.00</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <InlineWrap>
+          <ValueBalance>{balance.toFixed(2)}</ValueBalance>
+          <THB>THB</THB>
+          <BtnCircle>+</BtnCircle>
+        </InlineWrap>
+        <HrCustom />
       </CardBalance>
-      <CardBalance style={{ position: 'relative' }}>
-        <div
-          style={{
-            textAlign: 'left',
-            width: '100%',
-          }}
-        >
-          <div
-            style={{
-              paddingLeft: '10px',
-              paddingRight: '10px',
-            }}
-          >
-            <label style={{ display: 'block' }}>
-              <input type="radio" />
-              บัตรเครดิต
-            </label>
-            <label>
-              <input type="radio" style={{ display: 'blocks' }} />
-              Line pay
-            </label>
-          </div>
-        </div>
-      </CardBalance>
+      <ContainerItem>
+        {transactions.map(transaction => (
+          <ItemTransaction
+            key={`transaction-${transaction.tid}`}
+            {...transaction}
+          />
+        ))}
+      </ContainerItem>
     </div>
   )
 }
 
-export default MonthlyFee
+export default Wallet
