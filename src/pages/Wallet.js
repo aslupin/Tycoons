@@ -4,7 +4,10 @@ import styled from 'styled-components'
 import ItemTransaction from '../common/Item'
 import transactionApi from '../apis/transaction'
 import userApi from '../apis/user'
+<<<<<<< HEAD
 import user from '../apis/user'
+=======
+>>>>>>> 95b1cf0aa781495db049c2945f866a053429199e
 const CardBalance = styled.div`
   width: 90%;
   height: 220px;
@@ -102,6 +105,15 @@ const Wallet = () => {
     })
   }, [])
 
+  const resetBalance = () => {
+    const username = localStorage.getItem('username')
+    userApi.resetBalance(username).then(() => {
+      userApi.getBalance(username).then(balance => {
+        setBalance(balance)
+      })
+    })
+  }
+
   return (
     <Container>
       <CardBalance>
@@ -111,7 +123,7 @@ const Wallet = () => {
         <InlineWrap>
           <ValueBalance>{balance.toFixed(2)}</ValueBalance>
           <THB>THB</THB>
-          <BtnCircle>+</BtnCircle>
+          <BtnCircle onClick={resetBalance}>+</BtnCircle>
         </InlineWrap>
         <HrCustom />
       </CardBalance>
