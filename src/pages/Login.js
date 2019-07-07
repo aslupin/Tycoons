@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -11,6 +11,7 @@ import SUT from '../assets/sut.png'
 import ST from '../assets/startup_thailand.png'
 import SA from '../assets/startup-academy-logo.png'
 import payment from '../apis/payment'
+import {Redirect} from 'react-router-dom'
 
 const Img = styled.img`
   width: 300px;
@@ -68,11 +69,12 @@ const Sponsor2 = styled.img`
 `
 
 const Login = () => {
-  payment.pay('-Lj6495yYBNnu5_3ZA8q')
   const [values, setValues] = React.useState({
     name: '',
     pa: '',
   })
+
+  const [loggedIn, setLoggedIn] = React.useState(false)
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value })
@@ -80,44 +82,50 @@ const Login = () => {
 
   const handleLogin = () => {
     localStorage.setItem('username', values.name)
+    setLoggedIn(true)
   }
-  return (
-    <WrapForm>
-      <Wrap>
-        <Img src={Logo} />
-      </Wrap>
-      <TextCustom
-        id="standard-name"
-        label="Citizen ID / Passport"
-        value={values.name}
-        onChange={handleChange('name')}
-        margin="normal"
-      />
-      <TextCustom
-        id="standard-name"
-        label="6 Digit Password"
-        value={values.pa}
-        onChange={handleChange('pa')}
-        margin="normal"
-      />
-      <ButtonCustom>
-        <Button variant="contained" onClick={handleLogin} >Login</Button>
-      </ButtonCustom>
-      <SponsorParent>
-        <SponsorContain>
-          <Sponsor1 src={MS} />
-          <Sponsor1 src={ST} />
-          <Sponsor1 src={SA} />
-          <Sponsor1 src={SUT} />
-        </SponsorContain>
-        <SponsorContain>
-          <Sponsor2 src={SEDA} />
-          <Sponsor2 src={OSD} />
-          <Sponsor2 src={AIS} />
-        </SponsorContain>
-      </SponsorParent>
-    </WrapForm>
-  )
+
+  if (loggedIn) {
+    return <Redirect to='/map' />
+  } else {
+    return (
+      <WrapForm>
+        <Wrap>
+          <Img src={Logo} />
+        </Wrap>
+        <TextCustom
+          id="standard-name"
+          label="Citizen ID / Passport"
+          value={values.name}
+          onChange={handleChange('name')}
+          margin="normal"
+        />
+        <TextCustom
+          id="standard-name"
+          label="6 Digit Password"
+          value={values.pa}
+          onChange={handleChange('pa')}
+          margin="normal"
+        />
+        <ButtonCustom>
+          <Button variant="contained" onClick={handleLogin} >Login</Button>
+        </ButtonCustom>
+        <SponsorParent>
+          <SponsorContain>
+            <Sponsor1 src={MS} />
+            <Sponsor1 src={ST} />
+            <Sponsor1 src={SA} />
+            <Sponsor1 src={SUT} />
+          </SponsorContain>
+          <SponsorContain>
+            <Sponsor2 src={SEDA} />
+            <Sponsor2 src={OSD} />
+            <Sponsor2 src={AIS} />
+          </SponsorContain>
+        </SponsorParent>
+      </WrapForm>
+    )
+  }
 }
 
 export default Login
