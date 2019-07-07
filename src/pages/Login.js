@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import Logo from '../assets/transit.jpg'
+import Logo from '../assets/logo.PNG'
 import MS from '../assets/ministry_science.png'
 import OSD from '../assets/osd.png'
 import AIS from '../assets/ais.png'
@@ -14,9 +14,10 @@ import payment from '../apis/payment'
 import {Redirect} from 'react-router-dom'
 
 const Img = styled.img`
-  width: 300px;
-  height: 300px;
+  width: 80%;
   margin: 10px 0px;
+  border-radius: 10%;
+  border: 2px solid black;
 `
 const Wrap = styled.div`
   text-align: center;
