@@ -9,6 +9,13 @@ const user = {
         resolve(snapshot.val())
       })
     })
+  },
+  getBalance: function(username) {
+    return new Promise(resolve => {
+      db.ref(`/users/${username}/balance`).on('value', snapshot => {
+        resolve(snapshot.val())
+      })
+    })
   }
 };
 

@@ -3,6 +3,8 @@ import Container from '../common/Container'
 import styled from 'styled-components'
 import ItemTransaction from '../common/Item'
 import transactionApi from '../apis/transaction'
+import userApi from '../apis/user'
+import user from '../apis/user';
 const CardBalance = styled.div`
   width: 90%;
   height: 220px;
@@ -83,10 +85,15 @@ const ContainerItem = styled.div`
 `
 const Transaction = () => {
   const [transactions, setTransactions] = useState([])
+  const [balance, setBalance] = useState(0)
 
   useEffect(() => {
-    transactionApi.getHitory('New').then(transactions => {
+    const username = localStorage.getItem('username')
+    transactionApi.getHitory(username).then(transactions => {
       setTransactions(transactions)
+    })
+    userApi.getBalance(username).then(balance => {
+      setBalance(balance)
     })
   }, [])
 
@@ -97,7 +104,7 @@ const Transaction = () => {
           <WalletBalance>Wallet balance</WalletBalance>
         </WrapTopic>
         <InlineWrap>
-          <ValueBalance>1850.98</ValueBalance>
+          <ValueBalance>{balance.toFixed(2)}</ValueBalance>
           <THB>THB</THB>
           <BtnCircle>+</BtnCircle>
         </InlineWrap>
