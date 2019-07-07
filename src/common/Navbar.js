@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import IcBus from '../assets/ic_bus_stop.svg'
 import IcWallet from '../assets/ic_wallet.svg'
 import IcHome from '../assets/ic_home.svg'
+import IcHoverBus from '../assets/ic_bus_stop_active.png'
+import IcHoverWallet from '../assets/ic_wallet_active.png'
+import IcHoverPromotion from '../assets/ic_promotion_active.png'
 import IcPromotion from '../assets/ic_promotion.svg'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
+
 const ContainerNavbar = styled.div`
   position: fixed;
   width: 100vw;
@@ -27,40 +31,103 @@ const ItemNavbar = styled.div`
   justify-content: center;
 `
 
-const Icon = styled.img`
-  width: 36px;
-  height: 36px;
-  opacity: 0.57;
-  cursor: pointer;
-`
-
 const Text = styled.div`
   font-size: 10px;
 `
 
 const linkStyle = { textDecoration: 'none', color: 'inherit' }
 
+// const Icon = styled.img`
+//   width: 36px;
+//   height: 36px;
+//   opacity: 0.57;
+//   cursor: pointer;
+// `
+
+const Icon = styled.div`
+  width: 36px;
+  height: 36px;
+  opacity: 0.57;
+  cursor: pointer;
+
+  &.Bus {
+    background-image: url(${IcBus});
+  }
+
+  &.Wallet {
+    background-image: url(${IcWallet});
+  }
+
+  &.Prom {
+    background-image: url(${IcPromotion});
+  }
+`
+
+const NavbarMap = styled(NavLink)`
+  &.selected ${Icon}.Bus {
+    background-image: url(${IcHoverBus});
+    background-size: cover;
+  }
+`
+const NavbarTrans = styled(NavLink)`
+  &.selected ${Icon}.Wallet {
+    background-image: url(${IcHoverWallet});
+    background-size: cover;
+  }
+`
+const NavbarPromotion = styled(NavLink)`
+  &.selected ${Icon}.Prom {
+    background-image: url(${IcHoverPromotion});
+    background-size: cover;
+  }
+`
 const Navbar = () => {
+  // const [paths, setPaths] = useState({
+  //   icMap: IcBus,
+  //   icTrans: IcWallet,
+  //   icPro: IcPromotion,
+  // })
   return (
     <ContainerNavbar>
-      <Link to="/map" style={linkStyle}>
+      <NavbarMap
+        to="/map"
+        style={linkStyle}
+        activeClassName="selected"
+        // onClick={() =>
+        //   setPaths({ icMap: IcHoverBus, icTrans: IcWallet, icPro: IcPromotion })
+        // }
+      >
         <ItemNavbar>
-          <Icon src={IcBus} />
+          <Icon src={IcBus} className="Bus" />
           <Text>Map</Text>
         </ItemNavbar>
-      </Link>
-      <Link to="/transaction" style={linkStyle}>
+      </NavbarMap>
+      <NavbarTrans
+        to="/transaction"
+        style={linkStyle}
+        activeClassName="selected"
+        // onClick={() =>
+        //   setPaths({ icMap: IcBus, icTrans: IcHoverWallet, icPro: IcPromotion })
+        // }
+      >
         <ItemNavbar>
-          <Icon src={IcWallet} />
+          <Icon src={IcWallet} className="Wallet" />
           <Text>Transaction</Text>
         </ItemNavbar>
-      </Link>
-      <Link to="/promotion" style={linkStyle}>
+      </NavbarTrans>
+      <NavbarPromotion
+        to="/promotion"
+        style={linkStyle}
+        activeClassName="selected"
+        // onClick={() =>
+        //   setPaths({ icMap: IcBus, icTrans: IcWallet, icPro: IcHoverPromotion })
+        // }
+      >
         <ItemNavbar>
-          <Icon src={IcPromotion} />
+          <Icon src={IcPromotion} className="Prom" />
           <Text> Promotion</Text>
         </ItemNavbar>
-      </Link>
+      </NavbarPromotion>
       {/* <Link to="/" style={linkStyle}>
         <ItemNavbar>
           <Icon src={IcHome} />
