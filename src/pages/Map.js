@@ -11,7 +11,7 @@ const ContainerOut = styled.div`
 const Img = styled.img`
  position: absolute;
     z-index: -1;
-    width: 375px;
+    width: 100%;
     height: 812px;
     /* height: 100%; */
     top: 10px;

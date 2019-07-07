@@ -90,8 +90,7 @@ const TextBtnPay = styled.div`
   margin: 1.8rem;
   font-size: 18px;
 `
-
-const Transaction = () => {
+const MonthlyFee = () => {
   const [transactions, setTransactions] = useState([])
   const [value, setValue] = React.useState('female')
 
@@ -144,4 +143,4 @@ const Transaction = () => {
   )
 }
 
-export default Transaction
+export default MonthlyFee

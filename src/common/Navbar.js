@@ -61,12 +61,12 @@ const Navbar = () => {
           <Text> Promotion</Text>
         </ItemNavbar>
       </Link>
-      <Link to="/" style={linkStyle}>
+      {/* <Link to="/" style={linkStyle}>
         <ItemNavbar>
           <Icon src={IcHome} />
           <Text>Home</Text>
         </ItemNavbar>
-      </Link>
+      </Link> */}
     </ContainerNavbar>
   )
 }

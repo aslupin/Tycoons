@@ -16,7 +16,7 @@ import Map from './pages/Map'
 export default () => (
   <Switch>
     <Route path="/" exact component={App} />
-    <Route path="/transaction" exact component={MonthlyFee} />
+    <Route path="/transaction" exact component={Transaction} />
     <Route path="/login" exact component={Login} />
     <Route path="/map" exact component={Map} />
     <Route path="/promotion" exact component={Promotion} />
