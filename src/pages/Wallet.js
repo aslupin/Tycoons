@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import ItemTransaction from '../common/Item'
 import transactionApi from '../apis/transaction'
 import userApi from '../apis/user'
+import fdb from '../apis/fdb'
+
 const CardBalance = styled.div`
   width: 90%;
   height: 220px;
@@ -91,13 +93,28 @@ const Wallet = () => {
   const [transactions, setTransactions] = useState([])
   const [balance, setBalance] = useState(0)
 
-  useEffect(() => {
-    const username = localStorage.getItem('username')
+  const updateTransactions = username => {
     transactionApi.getHitory(username).then(transactions => {
       setTransactions(transactions)
     })
+  }
+
+  const updateBalance = username => {
     userApi.getBalance(username).then(balance => {
       setBalance(balance)
+    })
+  }
+
+  useEffect(() => {
+    const username = localStorage.getItem('username')
+    updateTransactions(username)
+    updateBalance(username)
+    const db = fdb.getDb()
+    db.ref('/users').on('value', snapshot => {
+      updateBalance(username)
+    })
+    db.ref('/transactions').on('value', snapshot => {
+      updateTransactions(username)
     })
   }, [])
 
