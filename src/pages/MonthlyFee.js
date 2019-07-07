@@ -3,16 +3,24 @@ import Container from '../common/Container'
 import styled from 'styled-components'
 import ItemTransaction from '../common/Item'
 import transactionApi from '../apis/transaction'
+import Radio from '@material-ui/core/Radio'
+import RadioGroup from '@material-ui/core/RadioGroup'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import FormControl from '@material-ui/core/FormControl'
+
 const CardBalance = styled.div`
   width: 90%;
-  height: 220px;
-  border: 1px solid rgb(151, 151, 151, 0.12);
+  /* height: 220px; */
+  border: 0.5px solid rgb(232, 231, 230, 0.12);
   border-radius: 10px;
   margin: 1rem;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  background-color: rgb(247, 243, 242);
+  z-index: 10000;
+  margin-bottom: 90px;
 `
 const WrapTopic = styled.div`
   width: 100%;
@@ -22,68 +30,74 @@ const WalletBalance = styled.p`
   font-size: 20px;
   margin: 1em;
 `
-const ValueBalance = styled.p`
-  color: #e2c080;
-  font-size: 45px;
-  margin-bottom: 10px;
-`
 
-const InlineWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-`
-
-const THB = styled.p`
-  color: #e2c080;
-  font-size: 20px;
-  margin: 0 0.5rem;
-`
-
-const BtnCircle = styled.div`
-  /* width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid rgb(216, 216, 216, 0.21); */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  cursor: pointer;
-  font-size: 40px;
-  color: #dd8b48;
-`
-const HrCustom = styled.hr`
-  border-color: #d8d8d8;
-  opacity: 0.3;
-  width: 60%;
-`
-
-const Menu = styled.p`
-  font-size: 18px;
-  color: #727171;
-  margin-left: 3rem;
-`
-
-const MenuTabsWrap = styled.div`
+const WrapLine = styled.div`
   display: flex;
   justify-content: flex-start;
-  width: 90%;
-  margin-bottom: 0.5rem;
+  align-items: center;
+  width: 100%;
+  border-right: 16px solid rgb(227, 150, 77);
+`
+const Text = styled.p`
+  color: #585858;
+  font-size: 14px;
+  margin: 0.5rem 1.3rem;
 `
 
-const ContainerItem = styled.div`
+const CostText = styled.p`
+  color: #585858;
+  font-size: 14px;
+  margin: 0.5rem 1.3rem;
+  border: 1px solid rgb(227, 150, 77);
+  padding: 2px 4px;
+  border-radius: 10px;
+`
+
+const RadioCustom = styled(Radio)`
+  && {
+    color: rgb(227, 150, 77);
+    font-size: 14px;
+  }
+`
+
+const RadioGroupCustom = styled(RadioGroup)`
+  && {
+    width: 90%;
+    padding-left: 1rem;
+    margin-top: 1rem;
+    border-left: 16px solid rgb(227, 150, 77);
+  }
+`
+
+const BtnPay = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 90%;
+  justify-content: flex-end;
+  width: 72%;
+  height: 90px;
+  background-color: rgb(222, 202, 202);
+  border-radius: 10px;
+  position: absolute;
+  top: 270px;
+  border: 1px solid rgb(143, 141, 140, 0.2);
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(186, 168, 168);
+  }
 `
+const TextBtnPay = styled.div`
+  margin: 1.8rem;
+  font-size: 18px;
+`
+
 const Transaction = () => {
   const [transactions, setTransactions] = useState([])
+  const [value, setValue] = React.useState('female')
 
+  function handleChange(event) {
+    setValue(event.target.value)
+  }
   useEffect(() => {
     transactionApi.getHitory('New').then(transactions => {
       setTransactions(transactions)
@@ -92,50 +106,39 @@ const Transaction = () => {
 
   return (
     <Container>
+      <BtnPay>
+        <TextBtnPay>จ่ายบิลรอบเดือน</TextBtnPay>
+      </BtnPay>
       <CardBalance>
         <WrapTopic>
           <WalletBalance>Monthly Fee</WalletBalance>
         </WrapTopic>
-        <div style={{ width: '100%' }}>
-          <table
-            style={{ width: '100%', marginLeft: '10px', marginRight: '10px' }}
-          >
-            <tbody>
-              <tr>
-                <td>รอบบิล</td>
-                <td>กรกฎาคม 2562</td>
-              </tr>
-              <tr>
-                <td>ค่าบริการ</td>
-                <td>100.00</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </CardBalance>
-      <CardBalance style={{ position: 'relative' }}>
-        <div
-          style={{
-            textAlign: 'left',
-            width: '100%',
-          }}
+        <WrapLine>
+          <Text>รอบบิล:</Text>
+          <Text>{`กรกฎาคม 2562`}</Text>
+        </WrapLine>
+        <WrapLine>
+          <Text>ค่าบริการ:</Text>
+          <CostText>{`104.00 THB`}</CostText>
+        </WrapLine>
+        <RadioGroupCustom
+          aria-label="Gender"
+          name="gender1"
+          // className={classes.group}
+          value={value}
+          onChange={handleChange}
         >
-          <div
-            style={{
-              paddingLeft: '10px',
-              paddingRight: '10px',
-            }}
-          >
-            <label style={{ display: 'block' }}>
-              <input type="radio" />
-              บัตรเครดิต
-            </label>
-            <label>
-              <input type="radio" style={{ display: 'blocks' }} />
-              Line pay
-            </label>
-          </div>
-        </div>
+          <FormControlLabel
+            value="credit"
+            control={<RadioCustom />}
+            label="บัตรเครดิต"
+          />
+          <FormControlLabel
+            value="linepay"
+            control={<RadioCustom />}
+            label="LINE pay"
+          />
+        </RadioGroupCustom>
       </CardBalance>
     </Container>
   )

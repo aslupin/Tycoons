@@ -21,13 +21,16 @@ const Detail = styled.div`
   align-items: center;
   justify-content: flex-start;
 `
+const TextTopic = styled.p`
+  color: #42403e;
+  font-size: 20px;
+  margin: 1em;
+`
 
 const Promotion = () => {
   return (
     <Container>
-      <div>
-        <img />
-      </div>
+      <TextTopic>Promotions</TextTopic>
       <PromotionItem text="ฟรี 3 เที่ยว! ลงทะเบียนภายในสัปดาห์นี้" />
       <PromotionItem text="พิเศษ! ลด 30% เหมา 30 เที่ยวเดือนนี้สำหรับนักเรียนนักศึกษา" />
     </Container>
