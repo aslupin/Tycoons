@@ -16,6 +16,13 @@ const user = {
         resolve(snapshot.val())
       })
     })
+  },
+  resetBalance: function(username) {
+    return new Promise(resolve => {
+      db.ref(`/users/${username}`).update({balance: 100}, () => {
+        resolve()
+      })
+    })
   }
 };
 
